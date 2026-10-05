@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Shop Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h16l-1.2 11.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8Z" />
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+          </svg>
+        </span>
+        <div class="brand-text">
+          <h1>Smart Shop Assistant</h1>
+          <p>Stock, orders and store policy — answered with its sources shown</p>
+        </div>
+      </div>
+
+      <div class="masthead-side">
+        <button id="status-pill" class="status status-unknown" type="button" title="Server status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="status-text">Checking server</span>
+        </button>
+        <button id="new-session" class="btn-quiet" type="button">New chat</button>
+      </div>
+    </header>
+
+    <main id="stream" class="stream" aria-live="polite">
+      <section class="opening" id="opening">
+        <p class="opening-eyebrow">Every answer shows the path it took</p>
+        <h2 class="opening-title">Ask the store anything.</h2>
+
+        <div class="legend">
+          <span class="legend-item"><i class="dot dot-rag"></i>Knowledge base<span class="legend-note">policies, FAQ</span></span>
+          <span class="legend-item"><i class="dot dot-tool"></i>Live tool<span class="legend-note">stock, totals</span></span>
+          <span class="legend-item"><i class="dot dot-direct"></i>Direct<span class="legend-note">chit-chat</span></span>
+        </div>
+
+        <div class="starters" id="starters">
+          <button class="starter" type="button" data-q="What is your return policy and how long do I have?">
+            <span class="starter-tag tag-rag">Knowledge base</span>
+            <span class="starter-text">What is your return policy and how long do I have?</span>
+          </button>
+          <button class="starter" type="button" data-q="Do you have the Classic Cotton T-Shirt in size L?">
+            <span class="starter-tag tag-tool">Live tool</span>
+            <span class="starter-text">Do you have the Classic Cotton T-Shirt in size L?</span>
+          </button>
+          <button class="starter" type="button" data-q="Total for 2 Classic Cotton T-Shirts and 1 Slim Fit Jeans with code WELCOME10?">
+            <span class="starter-tag tag-tool">Live tool</span>
+            <span class="starter-text">Total for 2 t-shirts and 1 jeans with code WELCOME10?</span>
+          </button>
+          <button class="starter" type="button" data-q="Hi, what can you help me with?">
+            <span class="starter-tag tag-direct">Direct</span>
+            <span class="starter-text">Hi, what can you help me with?</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div id="alert" class="alert" hidden>
+      <span class="alert-mark" aria-hidden="true">!</span>
+      <span id="alert-text"></span>
+    </div>
+
+    <form id="composer" class="composer" autocomplete="off">
+      <textarea
+        id="input"
+        class="input"
+        rows="1"
+        placeholder="Ask about a product, a size, an order total, or a policy…"
+        maxlength="2000"
+        required
+      ></textarea>
+      <button id="send" class="btn-send" type="submit" aria-label="Send">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12h15M13 6l6 6-6 6" />
+        </svg>
+      </button>
+    </form>
+
+    <footer class="footbar">
+      <span class="foot-hint"><kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line</span>
+      <span id="session-label" class="foot-session">no session yet</span>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
